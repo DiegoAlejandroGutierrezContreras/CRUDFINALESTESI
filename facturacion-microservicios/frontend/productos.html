@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos — Factura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+  <div id="app-header"></div>
+
+  <main class="w-full pt-16 min-h-[calc(100vh-5rem)] bg-background">
+    <div class="max-w-7xl mx-auto px-margin lg:px-margin-desktop py-space-xl">
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col gap-space-xl max-w-5xl mx-auto w-full">
+          <div class="flex flex-col gap-space-xs">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Productos</h1>
+            <p class="font-body-md text-body-md text-secondary">Catálogo disponible para facturar</p>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(29,27,36,0.03)] overflow-hidden" id="catalog-table">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="bg-surface-container-low h-10">
+                    <th class="pl-space-lg pr-space-md py-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider w-24" scope="col">ID</th>
+                    <th class="px-space-md py-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider" scope="col">Nombre</th>
+                    <th class="px-space-md py-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider text-right w-44" scope="col">Precio</th>
+                    <th class="pl-space-md pr-space-lg py-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider text-right w-32" scope="col">Stock</th>
+                  </tr>
+                </thead>
+                <tbody id="catalog-rows">
+                  <tr>
+                    <td class="py-12 text-center text-on-surface-variant" colspan="4">Cargando productos...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="hidden bg-surface-container-lowest rounded-xl shadow-sm py-16 px-6 text-center flex-col items-center justify-center" id="catalog-empty">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-secondary mb-3 mx-auto">
+              <span class="material-symbols-outlined text-headline-lg">inventory_2</span>
+            </div>
+            <p class="font-headline-sm text-headline-sm text-on-surface mb-1">No hay productos registrados</p>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">El catálogo se encuentra vacío actualmente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script type="module" src="js/productos.js"></script>
+</body>
+</html>

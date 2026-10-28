@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facturas — Factura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md">
+  <div id="app-header"></div>
+
+  <main class="w-full pt-16 bg-surface max-w-7xl mx-auto px-margin lg:px-margin-desktop pb-space-xl">
+    <div class="flex flex-col w-full">
+      <div class="flex flex-col gap-space-xl py-space-lg">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+          <div class="flex flex-col gap-space-xs">
+            <h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Facturas</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">Facturas generadas</p>
+          </div>
+          <div class="flex items-center gap-space-md self-start md:self-auto">
+            <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider" id="facturas-count">0 registro(s)</span>
+            <a class="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm" href="nueva-factura.html">
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              Nueva factura
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden" id="facturas-table">
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low h-11">
+                  <th class="py-space-sm px-space-lg font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" scope="col">Factura</th>
+                  <th class="py-space-sm px-space-lg font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" scope="col">Fecha</th>
+                  <th class="py-space-sm px-space-lg font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" scope="col">Cliente</th>
+                  <th class="py-space-sm px-space-lg font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant text-right" scope="col">Total</th>
+                  <th class="py-space-sm px-space-lg font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant text-right" scope="col"><span class="sr-only">Acción</span></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y-0" id="facturas-rows">
+                <tr>
+                  <td class="py-12 text-center text-on-surface-variant" colspan="5">Cargando facturas...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="hidden w-full bg-surface-container-lowest rounded-xl shadow-sm p-16 flex-col items-center justify-center text-center" id="facturas-empty">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-secondary mb-space-md">
+            <span class="material-symbols-outlined text-headline-lg">receipt_long</span>
+          </div>
+          <p class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">No hay facturas registradas</p>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">El historial de facturación se encuentra vacío actualmente.</p>
+          <a class="mt-4 inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors" href="nueva-factura.html">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            Crear la primera factura
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script type="module" src="js/facturas.js"></script>
+</body>
+</html>

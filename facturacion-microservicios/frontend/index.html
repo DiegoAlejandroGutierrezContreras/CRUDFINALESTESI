@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="h-full" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión — Factura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+<body class="min-h-full flex flex-col justify-between bg-background text-on-surface font-body-md text-body-md">
+  <header class="w-full pt-margin-desktop px-margin-desktop">
+    <div class="max-w-[1280px] mx-auto">
+      <span class="font-headline-lg text-headline-lg tracking-tight text-on-surface select-none">Factura</span>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center w-full px-gutter py-space-xl">
+    <div class="w-full max-w-[1280px] flex items-center justify-center">
+      <div class="flex flex-col w-full items-center justify-center py-space-xl">
+        <div class="w-full max-w-[440px] bg-surface-container-lowest rounded-xl p-space-xl shadow-sm">
+          <div class="flex flex-col space-y-space-xs text-left mb-space-lg">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Iniciar sesión</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">Ingresa tus credenciales para acceder al sistema</p>
+          </div>
+
+          <div class="hidden items-center gap-space-xs bg-tertiary-container text-on-tertiary px-space-md py-space-sm rounded-lg mb-space-lg text-body-sm font-body-sm" id="success-banner">
+            <span class="material-symbols-outlined text-[18px] leading-none shrink-0">check_circle</span>
+            <span>Cuenta creada correctamente.</span>
+          </div>
+
+          <div class="hidden items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-space-sm rounded-lg mb-space-lg text-body-sm font-body-sm" id="error-banner">
+            <span class="material-symbols-outlined text-[18px] leading-none shrink-0 text-error">error</span>
+            <span id="error-text">Credenciales incorrectas</span>
+          </div>
+
+          <form class="flex flex-col space-y-space-lg" id="login-form" novalidate>
+            <div class="flex flex-col space-y-space-xs text-left">
+              <label class="font-label-md text-label-md text-on-surface select-none" for="email">Correo electrónico</label>
+              <div class="relative flex items-center">
+                <input autocomplete="email" class="w-full h-[44px] px-space-md bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-body-md rounded-lg outline-none transition-all duration-150 shadow-sm focus:shadow-md" id="email" name="email" placeholder="ejemplo@universidad.edu.co" required type="email" />
+              </div>
+            </div>
+            <div class="flex flex-col space-y-space-xs text-left">
+              <label class="font-label-md text-label-md text-on-surface select-none" for="password">Contraseña</label>
+              <div class="relative flex items-center">
+                <input autocomplete="current-password" class="w-full h-[44px] px-space-md bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-body-md rounded-lg outline-none transition-all duration-150 shadow-sm focus:shadow-md" id="password" name="password" placeholder="••••••••" required type="password" />
+              </div>
+            </div>
+            <div class="pt-space-xs">
+              <button class="w-full h-[44px] bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.99] shadow-sm hover:opacity-95 cursor-pointer" id="submit-button" type="submit">
+                Iniciar sesión
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-space-xl text-center">
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              ¿No tienes cuenta?
+              <a class="text-primary font-label-md text-label-md hover:underline ml-space-xs transition-colors" href="registro.html">Crear cuenta</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="w-full pb-margin-desktop px-margin-desktop text-center">
+    <div class="max-w-[1280px] mx-auto">
+      <p class="font-body-sm text-body-sm text-on-surface-variant select-none">Factura — Sistema de Facturación Digital</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initLogin } from "./js/auth.js";
+    initLogin();
+  </script>
+</body>
+</html>

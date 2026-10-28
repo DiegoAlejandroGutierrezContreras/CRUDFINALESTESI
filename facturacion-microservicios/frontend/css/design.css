@@ -1,0 +1,96 @@
+/* Tokens y ajustes visuales que complementan Tailwind. */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-tabular-amount-md,
+.font-tabular-amount-lg,
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Foco visible accesible sin romper el diseño. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #5b4b8a;
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #e6e0ed;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #5b4b8a;
+}
+
+dialog::backdrop {
+  background: rgba(28, 26, 35, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* Hoja de factura imprimible: solo el documento. */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  header,
+  footer,
+  #app-header,
+  #app-footer,
+  .toast-container,
+  #btn-print,
+  #btn-view-json {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  #invoice-sheet {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  #invoice-sheet table {
+    border-collapse: collapse;
+  }
+
+  #invoice-sheet th,
+  #invoice-sheet td {
+    border-bottom: 1px solid #d5d0dc;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+}

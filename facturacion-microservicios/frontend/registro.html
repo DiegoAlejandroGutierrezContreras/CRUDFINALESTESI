@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="h-full" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear cuenta — Factura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+<body class="min-h-full flex flex-col justify-between bg-background text-on-surface font-body-md text-body-md">
+  <header class="w-full pt-margin-desktop px-margin-desktop">
+    <div class="max-w-[1280px] mx-auto">
+      <span class="font-headline-lg text-headline-lg tracking-tight text-on-surface select-none">Factura</span>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center w-full px-gutter py-space-xl">
+    <div class="w-full max-w-[1280px] flex items-center justify-center">
+      <div class="flex flex-col w-full items-center justify-center">
+        <div class="w-full max-w-[420px] bg-surface-container-lowest rounded-xl p-space-xl shadow-sm">
+          <div class="mb-space-lg">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Crear cuenta</h1>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Solo necesitas un nombre, un correo y una contraseña.</p>
+          </div>
+
+          <div class="hidden mb-space-lg items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-error-container text-on-error-container text-body-sm font-body-sm" id="inline-error-banner">
+            <span class="material-symbols-outlined text-[18px] shrink-0 select-none">error</span>
+            <span id="inline-error-text">Ya existe un usuario con ese email</span>
+          </div>
+
+          <form class="space-y-space-md" id="signup-form" novalidate>
+            <div class="flex flex-col gap-space-xs">
+              <label class="font-label-md text-label-md text-on-surface" for="name">Nombre completo</label>
+              <input class="h-[44px] w-full px-space-md bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/60 outline-none transition-all duration-150" id="name" name="name" placeholder="Ej. Santiago Morales" required type="text" />
+            </div>
+            <div class="flex flex-col gap-space-xs">
+              <label class="font-label-md text-label-md text-on-surface" for="email">Correo electrónico</label>
+              <input autocomplete="email" class="h-[44px] w-full px-space-md bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/60 outline-none transition-all duration-150" id="email" name="email" placeholder="ejemplo@universidad.edu.co" required type="email" />
+            </div>
+            <div class="flex flex-col gap-space-xs">
+              <label class="font-label-md text-label-md text-on-surface" for="password">Contraseña</label>
+              <input autocomplete="new-password" class="h-[44px] w-full px-space-md bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/60 outline-none transition-all duration-150" id="password" minlength="6" name="password" placeholder="••••••••" required type="password" />
+              <p class="font-body-sm text-body-sm text-secondary pt-0.5 select-none">Mínimo 6 caracteres</p>
+            </div>
+            <div class="pt-space-sm">
+              <button class="relative h-[44px] w-full bg-primary-container hover:bg-primary active:scale-[0.99] text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 transition-all duration-150 select-none cursor-pointer" id="submit-button" type="submit">
+                Crear cuenta
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-space-lg text-center">
+            <a class="font-body-md text-body-md text-secondary hover:text-on-surface transition-colors duration-150 select-none" href="index.html">Ya tengo cuenta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="w-full pb-margin-desktop px-margin-desktop text-center">
+    <div class="max-w-[1280px] mx-auto">
+      <p class="font-body-sm text-body-sm text-on-surface-variant select-none">Factura — Sistema de Facturación Digital</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initRegister } from "./js/auth.js";
+    initRegister();
+  </script>
+</body>
+</html>

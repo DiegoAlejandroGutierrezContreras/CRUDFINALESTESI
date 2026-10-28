@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clientes — Factura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md">
+  <div id="app-header"></div>
+
+  <main class="w-full pt-16 bg-surface min-h-screen">
+    <div class="flex flex-col w-full">
+      <div class="max-w-7xl mx-auto w-full px-margin lg:px-margin-desktop py-space-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-md pb-space-xl">
+          <div>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Clientes</h1>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Directorio consolidado de compradores registrados</p>
+          </div>
+          <button class="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-150 active:scale-[0.99] shadow-sm" id="new-client-button" type="button">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 16 16">
+              <path d="M8 3v10M3 8h10"></path>
+            </svg>
+            <span>Nuevo cliente</span>
+          </button>
+        </div>
+
+        <div class="w-full bg-surface-container-lowest rounded-xl shadow-[0_1px_3px_0_rgba(29,27,36,0.03)] overflow-hidden" id="clients-table">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="h-10 bg-surface-container-low">
+                  <th class="px-6 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-24" scope="col">ID</th>
+                  <th class="px-6 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Nombre</th>
+                  <th class="px-6 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Cédula</th>
+                  <th class="px-6 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Correo electrónico</th>
+                  <th class="px-6 py-2.5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Dirección</th>
+                </tr>
+              </thead>
+              <tbody id="clients-table-body">
+                <tr>
+                  <td class="py-12 text-center text-on-surface-variant" colspan="5">Cargando clientes...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="hidden py-16 px-6 text-center flex-col items-center justify-center bg-surface-container-lowest rounded-xl" id="empty-state">
+          <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline mb-3 mx-auto">
+            <span class="material-symbols-outlined text-[20px]">group</span>
+          </div>
+          <p class="font-label-md text-label-md text-on-surface">No hay clientes registrados</p>
+          <p class="font-body-sm text-body-sm text-outline mt-1 max-w-xs mx-auto">Comienza incorporando tu primer cliente con el botón superior.</p>
+          <button class="mt-4 inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors" id="empty-new-client-button" type="button">
+            <span class="material-symbols-outlined text-[18px]">person_add</span>
+            Crear el primer cliente
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <!-- Modal Nuevo cliente -->
+  <div class="hidden fixed inset-0 z-50 items-center justify-center px-4 bg-on-background/30 backdrop-blur-sm" id="client-modal">
+    <div aria-labelledby="modal-title" aria-modal="true" class="bg-surface-container-lowest w-full max-w-[520px] max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl p-space-xl" role="dialog">
+      <div class="flex items-center justify-between pb-space-md">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="modal-title">Nuevo cliente</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Ingresa los datos para incorporar el cliente al directorio de facturación.</p>
+        </div>
+        <button aria-label="Cerrar modal" class="w-9 h-9 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors" id="close-modal-btn" type="button">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="hidden mb-space-md items-center gap-2 px-3 py-2 bg-error-container rounded-lg text-on-error-container" id="client-form-error">
+        <span class="material-symbols-outlined text-[16px] text-error shrink-0">error</span>
+        <span class="font-body-sm text-body-sm font-medium" id="client-form-error-text"></span>
+      </div>
+
+      <form class="space-y-space-md mt-space-md" id="new-client-form" novalidate>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="client-name">
+            <span>Nombre</span>
+            <span class="font-body-sm text-body-sm text-outline">Obligatorio</span>
+          </label>
+          <input class="w-full h-10 px-3.5 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md rounded-xl shadow-sm focus:outline-none transition-all" id="client-name" name="client-name" placeholder="Ej. Carlos Pérez" type="text" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="client-cedula">
+            <span>Cédula</span>
+            <span class="font-body-sm text-body-sm text-outline">Identificador numérico</span>
+          </label>
+          <input class="w-full h-10 px-3.5 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md rounded-xl shadow-sm focus:outline-none transition-all" id="client-cedula" name="client-cedula" placeholder="Ej. 1234567" type="text" inputmode="numeric" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-md text-label-md text-on-surface" for="client-email">Correo electrónico</label>
+          <input class="w-full h-10 px-3.5 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md rounded-xl shadow-sm focus:outline-none transition-all" id="client-email" name="client-email" placeholder="ejemplo@correo.com" type="email" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-md text-label-md text-on-surface" for="client-address">Dirección</label>
+          <input class="w-full h-10 px-3.5 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md rounded-xl shadow-sm focus:outline-none transition-all" id="client-address" name="client-address" placeholder="Ej. Calle 123 #45-67, Bogotá" type="text" />
+        </div>
+        <div class="pt-space-lg flex items-center justify-end gap-space-md">
+          <button class="h-11 px-5 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors shadow-sm" id="cancel-btn" type="button">Cancelar</button>
+          <button class="h-11 px-6 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md shadow-md hover:bg-primary transition-all active:scale-[0.99] flex items-center gap-2" id="save-client-btn" type="submit">
+            <span class="material-symbols-outlined text-[18px]">check</span>
+            Guardar cliente
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/clientes.js"></script>
+</body>
+</html>
